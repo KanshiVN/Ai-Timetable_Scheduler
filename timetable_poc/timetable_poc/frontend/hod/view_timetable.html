@@ -1,0 +1,118 @@
+<h1>View Timetable</h1>
+
+<div class="card" style="display: flex; align-items: center; gap: 1rem; padding: 1.5rem;">
+    <label for="classSelect" class="mb-0">Select Class:</label>
+    <select id="classSelect" class="mb-0 w-auto">
+        <!-- Populated by JS -->
+    </select>
+</div>
+
+<div class="table-container">
+    <table id="timetable">
+        <thead>
+            <tr>
+                <th>Day / Time</th>
+                <th>08:30–09:30</th>
+                <th>09:30–10:30</th>
+                <th>10:45–11:45</th>
+                <th>11:45–12:45</th>
+                <th>13:30–14:30</th>
+                <th>14:30–15:30</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script>
+    const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+
+    const TIME_SLOTS = [
+        { display: "08:30–09:30", start: "08:30:00", end: "09:30:00" },
+        { display: "09:30–10:30", start: "09:30:00", end: "10:30:00" },
+        { display: "10:45–11:45", start: "10:45:00", end: "11:45:00" },
+        { display: "11:45–12:45", start: "11:45:00", end: "12:45:00" },
+        { display: "13:30–14:30", start: "13:30:00", end: "14:30:00" },
+        { display: "14:30–15:30", start: "14:30:00", end: "15:30:00" }
+    ];
+
+    async function loadClasses() {
+        const res = await fetch("/api/classes");
+        const classes = await res.json();
+
+        const sel = document.getElementById("classSelect");
+        sel.innerHTML = "";
+
+        classes.forEach(c => {
+            const opt = document.createElement("option");
+            opt.value = c.class_id;
+            opt.text = c.class_name;
+            sel.appendChild(opt);
+        });
+
+        if (classes.length > 0) {
+            loadTimetable();
+        }
+    }
+
+    async function loadTimetable() {
+        const classId = document.getElementById("classSelect").value;
+        if (!classId) return;
+
+        const res = await fetch(`/api/hod/timetable?class_id=${classId}`);
+        const data = await res.json();
+
+        const body = document.querySelector("#timetable tbody");
+        body.innerHTML = "";
+
+        DAYS.forEach(day => {
+            const row = document.createElement("tr");
+            // Row header for Day
+            const dayCell = document.createElement("th");
+            dayCell.textContent = day;
+            dayCell.style.backgroundColor = 'var(--text-main)'; // Matching dark sidebar theme
+            dayCell.style.color = 'white';
+            row.appendChild(dayCell);
+
+            TIME_SLOTS.forEach(slot => {
+                const cell = document.createElement("td");
+                cell.style.verticalAlign = "top";
+                cell.style.minWidth = "150px";
+
+                const entry = data.find(e =>
+                    e.day === day &&
+                    e.start_time === slot.start &&
+                    e.end_time === slot.end
+                );
+
+                if (entry) {
+                    // Determine styling based on type (Lab vs Lecture)
+                    const isLab = entry.display.includes("("); // Heuristic based on format "Subject (ShortName)"
+
+                    cell.innerHTML = `
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.25rem;">
+                ${slot.display}
+            </div>
+            <div style="font-weight:600; font-size:0.9rem; color:var(--text-main);">
+                ${entry.display}
+            </div>
+        `;
+                    //   cell.style.backgroundColor = isLab ? "#E0F2FE" : "#F3F4F6"; // Sky 100 vs Gray 100
+                } else {
+                    cell.innerHTML = `
+            <div style="font-size:0.75rem; color: #D1D5DB;">
+                ${slot.display}
+            </div>
+        `;
+                }
+
+                row.appendChild(cell);
+            });
+
+            body.appendChild(row);
+        });
+    }
+
+    document.getElementById("classSelect").onchange = loadTimetable;
+    loadClasses();
+</script>

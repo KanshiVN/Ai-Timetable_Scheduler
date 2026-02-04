@@ -1,0 +1,142 @@
+<h1>Data Input</h1>
+<p>Configure subject loads and allocate divisions.</p>
+
+<div class="action-bar"
+  style="margin-bottom: 2rem; border-radius: var(--radius-card); border: 1px solid var(--border);">
+  <button id="btnConfig" class="active" onclick="showLoadConfig()">Subject Load Configuration</button>
+  <button id="btnAlloc" class="secondary" onclick="showDivisionAllocation()">Division Allocation</button>
+</div>
+
+<!-- ================= SUBJECT LOAD CONFIG ================= -->
+<div id="loadConfigSection">
+
+  <div class="card">
+    <h3>Configure New Subject</h3>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end;">
+
+      <div>
+        <label>Year</label>
+        <select id="yearSelect" class="mb-0 w-auto">
+          <option value="">Select</option>
+          <option value="SE">SE</option>
+          <option value="TE">TE</option>
+          <option value="BE">BE</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Semester</label>
+        <select id="semesterSelect" class="mb-0 w-auto">
+          <option value="">Select</option>
+        </select>
+      </div>
+
+      <div style="flex: 1; min-width: 200px;">
+        <label>Subject Name</label>
+        <input id="subjectName" placeholder="e.g. Data Structures" class="mb-0">
+      </div>
+
+      <div>
+        <label>Type</label>
+        <select id="subjectType" onchange="toggleLoadInputs()" class="mb-0 w-auto">
+          <option value="lecture">Lecture</option>
+          <option value="lab">Practical</option>
+        </select>
+      </div>
+
+      <div style="width: 140px;">
+        <label>Load / Week</label>
+        <input id="lectureLoad" type="number" placeholder="Lectures" class="mb-0">
+        <input id="practicalLoad" type="number" placeholder="Practicals" class="mb-0 hidden">
+      </div>
+
+      <button onclick="addSubject()">
+        <i class="fa-solid fa-plus"></i> Add
+      </button>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Type</th>
+          <th>Lectures</th>
+          <th>Practicals</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="subjectTable">
+        <tr>
+          <td colspan="5" class="text-center text-muted">No data loaded</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ================= DIVISION ALLOCATION ================= -->
+<div id="divisionAllocationSection" class="hidden">
+
+  <div class="card" style="display: flex; gap: 1rem; align-items: center;">
+    <div>
+      <label class="mb-0">Year</label>
+      <select id="allocYear" class="mb-0 w-auto">
+        <option value="">Select</option>
+        <option value="SE">SE</option>
+        <option value="TE">TE</option>
+        <option value="BE">BE</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="mb-0">Semester</label>
+      <select id="allocSemester" class="mb-0 w-auto">
+        <option value="">Select</option>
+      </select>
+    </div>
+
+    <button onclick="loadAllocationTable()">
+      <i class="fa-solid fa-sync"></i> Load Data
+    </button>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Teacher (Auto)</th>
+          <th>Division</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="allocationTable">
+        <tr>
+          <td colspan="4" class="text-center text-muted">Select Year & Semester to load allocations</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script src="/hod/data_input.js"></script>
+<script>
+  // Simple tab switching logic for the buttons
+  function showLoadConfig() {
+    document.getElementById('loadConfigSection').classList.remove('hidden');
+    document.getElementById('divisionAllocationSection').classList.add('hidden');
+
+    document.getElementById('btnConfig').className = '';
+    document.getElementById('btnAlloc').className = 'secondary';
+  }
+
+  function showDivisionAllocation() {
+    document.getElementById('loadConfigSection').classList.add('hidden');
+    document.getElementById('divisionAllocationSection').classList.remove('hidden');
+
+    document.getElementById('btnConfig').className = 'secondary';
+    document.getElementById('btnAlloc').className = '';
+  }
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ title }}</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- HOD Styles -->
+    <link rel="stylesheet" href="/hod/hod.css">
+</head>
+
+<body>
+
+    <div class="layout">
+
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="sidebar">
+            <h2>HOD PANEL</h2>
+
+            <nav>
+                <a href="/hod/dashboard">Dashboard</a>
+                <a href="/hod/allot">Allot Subjects</a>
+                <a href="/hod/allot-practicals">Allot Practicals</a>
+                <a href="/hod/generate-timetable">Generate Timetable</a>
+                <a href="/hod/view-timetable">View Timetable</a>
+                <a href="/hod/data-input">Data Input</a>
+            </nav>
+
+            <a class="logout" href="/">Logout</a>
+        </aside>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <main class="content">
+            {{ content | safe }}
+        </main>
+
+    </div>
+
+</body>
+
+</html>

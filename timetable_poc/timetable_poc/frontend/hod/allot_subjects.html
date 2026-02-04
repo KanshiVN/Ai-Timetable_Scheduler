@@ -1,0 +1,112 @@
+<h1>Approve Faculty Subject Preferences</h1>
+<p>
+  Select exactly one subject per year.
+  <br>
+  <small>Division allocation is done later from <b>Data Input → Division Allocation</b>.</small>
+</p>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Faculty</th>
+        <th>Year</th>
+        <th>Semester</th>
+        <th>Preferred Subject</th>
+        <th>Approve</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id="prefBody"></tbody>
+  </table>
+</div>
+
+<script>
+  fetch("/api/hod/preferences")
+    .then(r => r.json())
+    .then(data => {
+      const body = document.getElementById("prefBody");
+      body.innerHTML = "";
+
+      if (data.length === 0) {
+        body.innerHTML = `
+        <tr>
+          <td colspan="6" style="text-align:center; color: var(--text-muted);">
+            No pending requests
+          </td>
+        </tr>`;
+        return;
+      }
+
+      data.forEach(p => {
+        let options = `<option value="">Select</option>`;
+        p.preferences.forEach(sub => {
+          options += `<option value="${sub}">${sub}</option>`;
+        });
+
+        body.innerHTML += `
+        <tr>
+          <td>${p.faculty_name}</td>
+          <td>${p.year_level}</td>
+          <td>${p.semester}</td>
+          <td>
+            <select data-pref-id="${p.id}">
+              ${options}
+            </select>
+          </td>
+          <td>
+            <button onclick="approveRow(this)">
+              Approve
+            </button>
+          </td>
+          <td>
+            <button class="danger" onclick="deletePreference(${p.id})">
+              Delete
+            </button>
+          </td>
+        </tr>
+      `;
+      });
+    });
+
+  function approveRow(btn) {
+    const row = btn.closest("tr");
+    const sel = row.querySelector("select");
+
+    if (!sel.value) {
+      alert("Please select a subject");
+      return;
+    }
+
+    const payload = {
+      approvals: [{
+        preference_id: sel.dataset.prefId,
+        allocated_subject: sel.value
+      }]
+    };
+
+    fetch("/api/hod/approve-preferences", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+      .then(r => r.json())
+      .then(d => {
+        alert(d.message);
+        row.remove();
+      });
+  }
+
+  function deletePreference(prefId) {
+    if (!confirm("Delete this faculty preference?")) return;
+
+    fetch(`/api/hod/delete-preference/${prefId}`, {
+      method: "DELETE"
+    })
+      .then(r => r.json())
+      .then(d => {
+        alert(d.message);
+        location.reload();
+      });
+  }
+</script>

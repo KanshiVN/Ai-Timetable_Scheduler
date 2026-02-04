@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- FIXED: Flask static path -->
+    <link rel="stylesheet" href="/faculty/faculty.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+
+        <div class="profile">
+            <div class="avatar">
+                <i class="fa-solid fa-user-graduate"></i>
+            </div>
+            <div class="profile-text">
+                <div class="name">FACULTY</div>
+                <div class="dept">Computer Engineering</div>
+            </div>
+        </div>
+
+        <nav class="nav">
+
+            <a href="/faculty/dashboard" class="nav-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="/faculty/view-timetable" class="nav-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>View Timetable</span>
+            </a>
+
+            <a href="/faculty/subject-preferences" class="nav-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Subject Preferences</span>
+            </a>
+
+        </nav>
+
+        <div class="logout">
+            <a href="/">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="content">
+        {{ content | safe }}
+    </main>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<div class="card" style="max-width: 600px; margin: 0 auto; text-align: center;">
+    <div style="font-size: 3.5rem; color: var(--primary); margin-bottom: 1.5rem;">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+    </div>
+
+    <h1>Generate Timetable</h1>
+    <p>
+        Run the intelligent genetic algorithm to create a conflict-free schedule for all classes (SE, TE, BE).
+        This process may take a few seconds.
+    </p>
+
+    <div style="margin-top: 2rem;">
+        <button id="generateBtn" style="padding: 1rem 2.5rem; font-size: 1.1rem;">
+            <i class="fa-solid fa-rocket"></i>
+            Start Generation
+        </button>
+    </div>
+
+    <!-- Status Area -->
+    <div id="statusArea" style="display: none; text-align: left;"></div>
+</div>
+
+<script>
+    document.getElementById("generateBtn").onclick = async () => {
+        const btn = document.getElementById("generateBtn");
+        const statusArea = document.getElementById("statusArea");
+
+        // 1. Show Loading State
+        btn.disabled = true;
+        btn.style.opacity = "0.7";
+        btn.innerHTML = `<i class="fa-solid fa-circle-notch spinner"></i> Generating...`;
+
+        statusArea.style.display = "flex";
+        statusArea.className = "status-card status-loading";
+        statusArea.innerHTML = `
+            <i class="fa-solid fa-microchip animate-pulse"></i>
+            <span>Processing constraints and allocations...</span>
+        `;
+
+        try {
+            // 2. Call API
+            const res = await fetch("/api/hod/generate-timetable", {
+                method: "POST"
+            });
+            const data = await res.json();
+
+            // 3. Handle Result
+            if (res.ok) {
+                statusArea.className = "status-card status-success";
+                statusArea.innerHTML = `
+                    <i class="fa-solid fa-check-circle"></i>
+                    <div>
+                        <strong>Success!</strong>
+                        <div>${data.message} (${data.total_entries} slots created)</div>
+                        <div style="margin-top:0.5rem">
+                            <a href="/hod/view-timetable" style="color:inherit; text-decoration:underline;">View Timetable &rarr;</a>
+                        </div>
+                    </div>
+                `;
+            } else {
+                statusArea.className = "status-card status-error";
+                statusArea.innerHTML = `
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <div>
+                        <strong>Generation Failed</strong>
+                        <div>${data.error}</div>
+                    </div>
+                `;
+            }
+        } catch (err) {
+            statusArea.className = "status-card status-error";
+            statusArea.innerHTML = `
+                <i class="fa-solid fa-bomb"></i>
+                <div>
+                    <strong>System Error</strong>
+                    <div>${err.message}</div>
+                </div>
+            `;
+        } finally {
+            // Reset Button
+            btn.disabled = false;
+            btn.style.opacity = "1";
+            btn.innerHTML = `<i class="fa-solid fa-rotate-right"></i> Regenerate`;
+        }
+    };
+</script>

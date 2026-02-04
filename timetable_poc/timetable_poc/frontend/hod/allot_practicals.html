@@ -1,0 +1,204 @@
+<h1>Allot Practicals</h1>
+<p>
+  Assign lab subjects to faculty members who are willing to take practicals.
+</p>
+
+<!-- Filter Section -->
+<div class="card" style="display: flex; align-items: center; gap: 1rem; padding: 1.5rem;">
+  <div>
+    <label for="yearSelect">Year:</label>
+    <select id="yearSelect" style="margin-bottom: 0; width: auto;">
+      <option value="">Select</option>
+      <option value="SE">SE</option>
+      <option value="TE">TE</option>
+      <option value="BE">BE</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="semesterSelect">Semester:</label>
+    <select id="semesterSelect" style="margin-bottom: 0; width: auto;">
+      <option value="">Select</option>
+    </select>
+  </div>
+
+  <div style="margin-left: auto;">
+    <button onclick="loadPracticals()">
+      Load Labs
+    </button>
+  </div>
+</div>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Lab Subject</th>
+        <th>Faculty (Willing)</th>
+        <th>Division</th>
+        <th>Batch</th>
+        <th>Save</th>
+      </tr>
+    </thead>
+    <tbody id="practicalBody">
+      <tr>
+        <td colspan="5" style="text-align: center; color: var(--text-muted);">
+          Select year and semester
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  /* ================= SEMESTER MAP ================= */
+  const SEMESTER_MAP = {
+    SE: [3, 4],
+    TE: [5, 6],
+    BE: [7, 8]
+  };
+
+  /* ================= Populate semesters ================= */
+  document.getElementById("yearSelect").addEventListener("change", e => {
+    const semSel = document.getElementById("semesterSelect");
+    semSel.innerHTML = `<option value="">Select</option>`;
+
+    if (!e.target.value) return;
+
+    SEMESTER_MAP[e.target.value].forEach(s => {
+      semSel.innerHTML += `<option value="${s}">Semester ${s}</option>`;
+    });
+  });
+
+  /* ================= Load Practicals ================= */
+  async function loadPracticals() {
+    const year = yearSelect.value;
+    const semester = semesterSelect.value;
+    const body = document.getElementById("practicalBody");
+
+    if (!year || !semester) {
+      alert("Select year and semester");
+      return;
+    }
+
+    body.innerHTML = `<tr><td colspan="5" style="text-align: center;">Loading...</td></tr>`;
+
+    try {
+      const [labs, teachers, classes] = await Promise.all([
+        fetch(`/api/hod/lab-subjects?year=${year}&semester=${semester}`).then(r => r.json()),
+        fetch(`/api/hod/willing-practical-faculty`).then(r => r.json()),
+        fetch(`/api/classes?year=${year}`).then(r => r.json())
+      ]);
+
+      if (labs.length === 0) {
+        body.innerHTML =
+          `<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">No lab subjects configured</td></tr>`;
+        return;
+      }
+
+      body.innerHTML = "";
+
+      labs.forEach(lab => {
+        const teacherOpts = teachers.map(t =>
+          `<option value="${t.faculty_id}">
+          ${t.faculty_name}${t.short_name ? " (" + t.short_name + ")" : ""}
+        </option>`
+        ).join("");
+
+        const classOpts = classes.map(c =>
+          `<option value="${c.class_id}">${c.class_name}</option>`
+        ).join("");
+
+        body.innerHTML += `
+        <tr>
+          <td>${lab.subject_name}</td>
+
+          <td>
+            <select class="teacherSel" style="margin-bottom: 0;">
+              <option value="">Select</option>
+              ${teacherOpts}
+            </select>
+          </td>
+
+          <td>
+            <select class="classSel" onchange="loadBatches(this)" style="margin-bottom: 0;">
+              <option value="">Select</option>
+              ${classOpts}
+            </select>
+          </td>
+
+          <td>
+            <select class="batchSel" style="margin-bottom: 0;">
+              <option value="">Select</option>
+            </select>
+          </td>
+
+          <td>
+            <button onclick="savePractical(this, ${lab.subject_id})">
+              Save
+            </button>
+          </td>
+        </tr>
+      `;
+      });
+
+    } catch (err) {
+      console.error(err);
+      body.innerHTML =
+        `<tr><td colspan="5" style="text-align: center; color: var(--danger);">Failed to load data</td></tr>`;
+    }
+  }
+
+  /* ================= Load Batches ================= */
+  async function loadBatches(classSelect) {
+    const row = classSelect.closest("tr");
+    const batchSel = row.querySelector(".batchSel");
+
+    const classId = classSelect.value;
+    if (!classId) {
+      batchSel.innerHTML = `<option value="">Select</option>`;
+      return;
+    }
+
+    batchSel.innerHTML = `<option>Loading...</option>`;
+
+    const batches = await fetch(`/api/class-batches?class_id=${classId}`)
+      .then(r => r.json());
+
+    batchSel.innerHTML = `<option value="">Select</option>`;
+    batches.forEach(b => {
+      batchSel.innerHTML +=
+        `<option value="${b.batch_id}">${b.batch_name}</option>`;
+    });
+  }
+
+  /* ================= Save Practical ================= */
+  async function savePractical(btn, subjectId) {
+    const row = btn.closest("tr");
+
+    const facultyId = row.querySelector(".teacherSel").value;
+    const classId = row.querySelector(".classSel").value;
+    const batchId = row.querySelector(".batchSel").value;
+
+    if (!facultyId || !classId || !batchId) {
+      alert("Select faculty, division and batch");
+      return;
+    }
+
+    const payload = {
+      faculty_id: Number(facultyId),
+      subject_id: subjectId,
+      class_id: Number(classId),
+      batch_id: Number(batchId)
+    };
+
+    const res = await fetch("/api/hod/allot-practical", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+    alert(data.message || "Saved");
+  }
+</script>

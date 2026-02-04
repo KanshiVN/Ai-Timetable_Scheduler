@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Automated Timetable Generation System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Landing Styles -->
+    <link rel="stylesheet" href="/landing.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>
+            <span>Automated</span> Timetable<br>Generation System
+        </h1>
+        <p>
+            A smart, database-driven system for automatic academic scheduling.
+            Optimize resource allocation and generate conflict-free timetables in seconds.
+        </p>
+
+        <div class="card-container">
+
+            <!-- Teacher/Faculty Card -->
+            <div class="card">
+                <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                </div>
+                <h2>Teacher Portal</h2>
+                <p>
+                    Declare subjects, set preferences, and view your personal schedule.
+                    Complete management for faculty members.
+                </p>
+                <a href="/login" class="btn">
+                    <span>Go to Teacher Form</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- View Timetable Card -->
+            <div class="card">
+                <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;">
+                    <i class="fa-solid fa-table-list"></i>
+                </div>
+                <h2>View Timetable</h2>
+                <p>
+                    Access the master timetable for all classes.
+                    Filter by year, semester, and division.
+                </p>
+                <a href="/public/timetable" class="btn btn-secondary">
+                    <span>View Public Schedule</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        © 2026 Automated Timetable Generation System | <a href="/login"
+            style="color:inherit; text-decoration:none;">Login</a>
+    </footer>
+
+</body>
+
+</html>

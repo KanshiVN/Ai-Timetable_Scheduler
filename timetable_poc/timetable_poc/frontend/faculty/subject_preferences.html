@@ -1,0 +1,88 @@
+<h1>Faculty Subject Preferences</h1>
+<p>Please select semester and 3 subject preferences for each class.</p>
+
+<div class="pref-card">
+  <form id="prefForm">
+
+    <div class="form-row">
+      <label>Faculty Name</label>
+      <input type="text" id="faculty_name" required>
+    </div>
+
+    <div class="form-row">
+        <label>Short Name</label>
+        <input type="text" id="short_name" required placeholder="e.g. TW">
+    </div>
+
+
+    <div class="form-row">
+      <label>Designation</label>
+      <select id="designation" required>
+        <option value="">Select</option>
+        <option value="Assistant Professor">Assistant Professor</option>
+        <option value="Associate Professor">Associate Professor</option>
+      </select>
+    </div>
+
+    <hr>
+
+    <!-- ================= SE ================= -->
+    <h3>Second Year (SE)</h3>
+    <div class="form-row">
+      <label>Semester</label>
+      <select id="se_sem" required>
+        <option value="">Select</option>
+        <option value="3">Semester 3</option>
+        <option value="4">Semester 4</option>
+      </select>
+    </div>
+    <select id="se_pref1" required></select>
+    <select id="se_pref2" required></select>
+    <select id="se_pref3" required></select>
+
+    <hr>
+
+    <!-- ================= TE ================= -->
+    <h3>Third Year (TE)</h3>
+    <div class="form-row">
+      <label>Semester</label>
+      <select id="te_sem" required>
+        <option value="">Select</option>
+        <option value="5">Semester 5</option>
+        <option value="6">Semester 6</option>
+      </select>
+    </div>
+    <select id="te_pref1" required></select>
+    <select id="te_pref2" required></select>
+    <select id="te_pref3" required></select>
+
+    <hr>
+
+    <!-- ================= BE ================= -->
+    <h3>Final Year (BE)</h3>
+    <div class="form-row">
+      <label>Semester</label>
+      <select id="be_sem" required>
+        <option value="">Select</option>
+        <option value="7">Semester 7</option>
+        <option value="8">Semester 8</option>
+      </select>
+    </div>
+    <select id="be_pref1" required></select>
+    <select id="be_pref2" required></select>
+    <select id="be_pref3" required></select>
+
+    <hr>
+
+    <div class="form-row checkbox-row">
+      <input type="checkbox" id="practical">
+      <span>Willing to take practicals</span>
+    </div>
+
+    <button type="submit">Submit Preferences</button>
+
+    <p id="msg"></p>
+  </form>
+</div>
+
+<script src="/faculty/faculty.js"></script>

@@ -1,0 +1,57 @@
+<h1>Generated Timetable</h1>
+<p>Your weekly academic schedule.</p>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Class</th>
+                <th>Subject</th>
+                <th>Teacher</th>
+                <th>Day</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody id="timetableBody"></tbody>
+    </table>
+</div>
+
+<script>
+fetch("/api/timetable")
+    .then(res => res.json())
+    .then(data => {
+        const body = document.getElementById("timetableBody");
+        body.innerHTML = "";
+
+        if (!data || data.length === 0) {
+            body.innerHTML = `
+                <tr>
+                    <td colspan="5" style="text-align:center; padding:30px;">
+                        No timetable available
+                    </td>
+                </tr>`;
+            return;
+        }
+
+        data.forEach(row => {
+            const time = `${row.start_time.slice(0,5)} - ${row.end_time.slice(0,5)}`;
+
+            const subjectDisplay = row.type === "LAB"
+                ? `${row.subject} (LAB${row.batch ? " - " + row.batch : ""})`
+                : row.subject;
+
+            body.innerHTML += `
+                <tr>
+                    <td><strong>${row.class}</strong></td>
+                    <td>${subjectDisplay}</td>
+                    <td>${row.teacher}</td>
+                    <td>${row.day}</td>
+                    <td>${time}</td>
+                </tr>
+            `;
+        });
+    })
+    .catch(err => {
+        console.error("Error loading timetable:", err);
+    });
+</script>

@@ -1,0 +1,168 @@
+/* ==========================================================================
+   LOGIN PAGE THEME - PREMIUM BLUE
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+    /* Primary Colors */
+    --primary: #3B82F6;
+    --primary-hover: #2563EB;
+
+    /* Gradients */
+    --gradient-bg: linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 100%);
+
+    /* Text */
+    --text-main: #1F2937;
+    --text-muted: #6B7280;
+
+    /* Design Tokens */
+    --radius-card: 20px;
+    --radius-element: 10px;
+    --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--gradient-bg);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-main);
+}
+
+.login-container {
+    background: white;
+    padding: 3rem 2.5rem;
+    border-radius: var(--radius-card);
+    width: 400px;
+    /* Slightly wider */
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: var(--transition);
+}
+
+.login-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(59, 130, 246, 0.12);
+}
+
+.login-container h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.login-container p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+/* Form Elements */
+.input-group {
+    text-align: left;
+    margin-bottom: 1.25rem;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+input,
+select {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-element);
+    border: 1px solid #E5E7EB;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    background: #F9FAFB;
+    transition: var(--transition);
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* Button */
+button {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-element);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Text Links / Footer */
+.back-link {
+    display: block;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.back-link:hover {
+    color: var(--primary);
+}
+
+/* Messages */
+#error {
+    margin-top: 1rem;
+    color: #EF4444;
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: #FEF2F2;
+    padding: 0.75rem;
+    border-radius: var(--radius-element);
+    border: 1px solid #FECACA;
+    display: none;
+    /* Hidden by default */
+}
+
+#error:not(:empty) {
+    display: block;
+    /* Show if content exists */
+}

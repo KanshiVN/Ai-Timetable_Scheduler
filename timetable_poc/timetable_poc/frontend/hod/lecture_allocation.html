@@ -1,0 +1,44 @@
+<h1>Lecture Allocation</h1>
+<p>Assign teachers to subjects (theory) for each class.</p>
+
+<div class="pref-card">
+  <form id="lectureForm">
+
+    <div class="form-row">
+      <label>Class</label>
+      <select id="class_id" required>
+        <option value="">Select Class</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label>Subject</label>
+      <select id="subject_id" required>
+        <option value="">Select Subject</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label>Teacher</label>
+      <select id="teacher_id" required>
+        <option value="">Select Teacher</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label>Weekly Theory Load</label>
+      <input type="number" id="weekly_theory_load" readonly>
+    </div>
+
+    <div class="form-row">
+      <button type="submit" class="submit-btn">
+        Allocate Lecture
+      </button>
+    </div>
+
+    <p id="msg"></p>
+
+  </form>
+</div>
+
+<script src="/hod/lecture_allocation.js"></script>

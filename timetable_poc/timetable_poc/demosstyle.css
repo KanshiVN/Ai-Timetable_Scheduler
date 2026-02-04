@@ -1,0 +1,2480 @@
+/* --- CSS Variables for Theming --- */
+:root {
+    --primary-blue: #3B82F6;
+    --primary-blue-dark: #2563EB;
+    --text-dark: #1F2937;
+    --text-light: #6B7280;
+    --border-color: #D1D5DB;
+    --background-color: #F9FAFB;
+    --card-background: #FFFFFF;
+    --font-primary: 'Poppins', sans-serif;
+    --font-display: 'Playfair Display', serif;
+}
+
+/* --- General Reset & Body Styles --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--background-color);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- Header & Logo --- */
+.main-header {
+    padding: 2rem 4rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-dark);
+}
+
+.logo span {
+    color: var(--primary-blue);
+}
+
+/* --- Main Login Container --- */
+.login-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5rem;
+}
+
+/* --- Login & Quick Login Cards --- */
+.login-card,
+.quick-login-card {
+    background-color: var(--card-background);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-card h2 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.login-card>p {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
+/* --- Form Styles --- */
+#login-form {
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.7rem center;
+    background-repeat: no-repeat;
+    background-size: 1.25em;
+    color: var(--text-light);
+}
+
+.form-group select:required:invalid {
+    color: var(--text-light);
+}
+
+.form-group option {
+    color: var(--text-dark);
+}
+
+
+.forgot-password {
+    position: absolute;
+    right: 0;
+    bottom: -1.4rem;
+    font-size: 0.875rem;
+    color: var(--primary-blue);
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* --- Button Styles --- */
+.btn {
+    width: 100%;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background-image: linear-gradient(to right, #60A5FA, #3B82F6);
+    color: white;
+    margin-top: 1rem;
+}
+
+/* --- Quick Login Section --- */
+.quick-login-card {
+    margin-top: 1.5rem;
+    padding: 1.5rem 2.5rem;
+}
+
+.quick-login-card p {
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.quick-login-buttons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btn-secondary {
+    background-color: #EDF2F7;
+    color: var(--primary-blue);
+    flex-grow: 1;
+    /* Make buttons fill the space */
+    font-weight: 500;
+}
+
+
+
+/* --- Dashboard styling */
+
+/* --- Dashboard Page Specific Styles --- */
+.dashboard-body {
+    background-color: var(--background-color);
+    font-family: var(--font-primary);
+    color: var(--text-dark);
+}
+
+.dashboard-container {
+    display: flex;
+}
+
+/* --- Sidebar Styles --- */
+.sidebar {
+    width: 280px;
+    background-color: #111827;
+    /* Dark background */
+    color: #D1D5DB;
+    /* Light text */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 1.5rem;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid #374151;
+}
+
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #374151;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.user-avatar .feather {
+    color: #9CA3AF;
+}
+
+.user-name {
+    display: block;
+    font-weight: 600;
+    color: #F9FAFB;
+}
+
+.user-role {
+    font-size: 0.875rem;
+    color: #9CA3AF;
+}
+
+.sidebar-nav {
+    flex-grow: 1;
+    margin-top: 2rem;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    padding: 0.9rem 1rem;
+    color: #D1D5DB;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-nav a:hover {
+    background-color: #374151;
+    color: #FFFFFF;
+}
+
+.sidebar-nav a.active {
+    background-color: var(--primary-blue);
+    color: #FFFFFF;
+}
+
+.sidebar-nav .feather {
+    margin-right: 1rem;
+    width: 20px;
+    height: 20px;
+}
+
+.logout-link {
+    display: flex;
+    align-items: center;
+    padding: 0.9rem 1rem;
+    color: #F87171;
+    /* Red color for logout */
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.logout-link:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+.logout-link .feather {
+    margin-right: 1rem;
+}
+
+/* --- Main Content Styles --- */
+.main-content {
+    flex-grow: 1;
+    margin-left: 280px;
+    /* Same as sidebar width */
+    padding: 2.5rem 3.5rem;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.content-header h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.content-header p {
+    color: var(--text-light);
+}
+
+.quick-actions,
+.todays-schedule {
+    margin-top: 2.5rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.action-btn:hover {
+    background-color: #F3F4F6;
+    border-color: #9CA3AF;
+}
+
+.schedule-card {
+    background-color: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 1.5rem;
+}
+
+.schedule-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.card-content {
+    display: flex;
+    gap: 1rem;
+}
+
+.placeholder-item {
+    width: 150px;
+    height: 90px;
+    border-radius: 8px;
+    background-color: #F0F9FF;
+    border: 1px solid #BAE6FD;
+}
+
+.placeholder-item.purple {
+    background-color: #F5F3FF;
+    border: 1px solid #DDD6FE;
+}
+
+/* --- Dashboard styling */
+
+
+
+/* Data input login ke liye */
+
+.tabs-container {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-top: 2rem;
+}
+
+.tab-link {
+    padding: 1rem 0.5rem;
+    margin: 0 1.5rem 0 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-light);
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transform: translateY(1px);
+    /* Aligns with border */
+}
+
+.tab-link.active {
+    color: var(--primary-blue);
+    border-bottom-color: var(--primary-blue);
+}
+
+.tab-content {
+    display: none;
+    /* Hide all tab content by default */
+    padding-top: 1.5rem;
+}
+
+.tab-content.active {
+    display: block;
+    /* Show only the active tab content */
+}
+
+.content-header-secondary h3 {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.content-header-secondary p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.data-management-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.list-container {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+}
+
+.list-header {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.btn-export,
+.btn-add-new {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-export {
+    background: none;
+    border: 1px solid var(--border-color);
+}
+
+.btn-add-new {
+    background-color: var(--text-dark);
+    color: white;
+    border: none;
+}
+
+.list-body {
+    padding: 0.5rem 1.5rem 1.5rem;
+}
+
+.list-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #F3F4F6;
+    /* Lighter border for rows */
+}
+
+.list-row:last-child {
+    border-bottom: none;
+}
+
+.list-row.header {
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding-top: 0.5rem;
+}
+
+.list-col-main {
+    font-weight: 500;
+}
+
+.action-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.action-icons a {
+    color: var(--text-light);
+}
+
+.action-icons a:hover .feather-edit-2 {
+    color: var(--primary-blue);
+}
+
+.action-icons a:hover .feather-trash-2 {
+    color: #EF4444;
+    /* Red */
+}
+
+.action-icons .feather {
+    width: 18px;
+    height: 18px;
+}
+
+.uploader-container {
+    width: 100%;
+}
+
+.csv-uploader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    border: 2px dashed var(--border-color);
+    border-radius: 12px;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.csv-uploader:hover {
+    border-color: var(--primary-blue);
+    color: var(--primary-blue);
+}
+
+.csv-uploader .feather {
+    width: 48px;
+    height: 48px;
+}
+
+/* Data input login ke liye */
+
+
+/* Time table generation navbar */
+/* --- Timetable Generator Page Styles --- */
+.stepper-container {
+    display: flex;
+    background-color: #F3F4F6;
+    /* Light grey background */
+    border-radius: 10px;
+    padding: 0.5rem;
+    margin-top: 2rem;
+}
+
+.step {
+    flex-grow: 1;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    color: var(--text-light);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.step.active {
+    background-color: var(--card-background);
+    color: var(--text-dark);
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.generator-content {
+    margin-top: 2rem;
+}
+
+.settings-card {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin-top: 1.5rem;
+}
+
+.settings-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.card-title h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.card-title .feather {
+    color: var(--primary-blue);
+}
+
+.lectures-per-day {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-light);
+}
+
+.lectures-per-day input {
+    width: 60px;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.settings-card-body {
+    padding: 1rem 1.5rem 1.5rem;
+}
+
+.lecture-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.lecture-row:last-child {
+    border-bottom: none;
+}
+
+.lecture-row-label {
+    font-weight: 500;
+    width: 100px;
+    /* Fixed width for alignment */
+}
+
+.time-inputs {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.time-input-wrapper {
+    position: relative;
+}
+
+.time-input-wrapper .feather {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    pointer-events: none;
+    width: 18px;
+}
+
+.time-input-wrapper input[type="time"] {
+    padding: 0.6rem 0.75rem 0.6rem 2.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+}
+
+.btn-add-break {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-add-break .feather {
+    width: 16px;
+}
+
+.settings-card-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+}
+
+.btn-add-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    background-color: var(--text-dark);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-add-item:hover {
+    background-color: #374151;
+    transform: translateY(-2px);
+}
+
+.btn-add-item .feather {
+    width: 18px;
+    height: 18px;
+}
+
+.btn-delete-row {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.4rem 0.8rem;
+    background: none;
+    border: 1px solid #EF4444;
+    border-radius: 6px;
+    color: #EF4444;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-delete-row:hover {
+    background-color: #FEE2E2;
+}
+
+.btn-delete-row .feather {
+    width: 16px;
+    height: 16px;
+}
+
+.break-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid #F3F4F6;
+    background-color: #FEF3C7;
+    margin: 0 -1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.break-row:last-child {
+    border-bottom: none;
+}
+
+.break-row-label {
+    font-weight: 500;
+    color: #92400E;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.break-row-label .feather {
+    width: 18px;
+    color: #F59E0B;
+}
+
+/* Time table generation navbar */
+
+
+/* View timetable */
+
+/* --- Timetable Viewer Page Styles --- */
+.viewer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 1.5rem;
+}
+
+.viewer-card {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin-top: 1rem;
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper::after {
+    /* Custom dropdown arrow */
+    content: '';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    pointer-events: none;
+}
+
+.select-wrapper select {
+    padding: 0.6rem 2.5rem 0.6rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    appearance: none;
+    /* Hide default arrow */
+    background-color: transparent;
+}
+
+
+.viewer-card-body {
+    padding: 2rem;
+}
+
+/* Add this wrapper in your HTML around the timetable-grid */
+.timetable-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.timetable-grid {
+    display: grid;
+    /* Define 9 columns: 1 for day names, 6 for lectures, 2 for breaks */
+    grid-template-columns: 0.5fr 1fr 1fr 0.2fr 1fr 1fr 0.2fr 1fr 1fr;
+    gap: 0.75rem;
+    text-align: center;
+    min-width: 900px;
+    /* Force horizontal scroll on smaller screens */
+}
+
+.grid-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-header {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.day-header {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.break-cell {
+    color: var(--text-light);
+}
+
+.break-cell .feather-scissors {
+    width: 16px;
+    transform: rotate(90deg);
+}
+
+.lecture-slot {
+    min-height: 60px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    /* Smaller font for slots */
+    padding: 0.25rem;
+}
+
+/* Color coding for lecture slots */
+.lecture-slot.mon {
+    background-color: #E0E7FF;
+}
+
+.lecture-slot.tue {
+    background-color: #EDE9FE;
+}
+
+.lecture-slot.wed {
+    background-color: #D1FAE5;
+}
+
+.lecture-slot.thr {
+    background-color: #FEF3C7;
+}
+
+.lecture-slot.fri {
+    background-color: #FEE2E2;
+}
+
+/* View timetable */
+
+
+/* --- Exam Timetable Page Styles --- */
+.exam-grid {
+    display: grid;
+    /* Define 3 columns: 1 for day names, 2 for exam slots */
+    grid-template-columns: 0.5fr 1fr 1fr;
+    gap: 1rem;
+    text-align: center;
+    min-width: 600px;
+}
+
+/* --- Exam Generator Page Styles --- */
+.generator-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.generator-card {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.generator-card label {
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.generator-card .select-wrapper select {
+    width: 100%;
+    background-color: #F9FAFB;
+}
+
+/* --- Action Buttons in Header --- */
+.header-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/*
+==============================================
+--- Responsive Media Queries ---
+==============================================
+*/
+
+/* --- For Tablets (Portrait & Landscape) --- */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 260px;
+    }
+
+    .main-content {
+        margin-left: 260px;
+        padding: 2rem;
+    }
+
+    .data-management-grid {
+        grid-template-columns: 1fr;
+        /* Stack on tablets */
+    }
+
+    .generator-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- For Mobile Phones --- */
+@media (max-width: 768px) {
+
+    /* --- General Layout --- */
+    .sidebar {
+        transform: translateX(-100%);
+        /* Hide sidebar off-screen */
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Add this class with JS to show the sidebar */
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        /* Full width content */
+        padding: 1.5rem 1rem;
+    }
+
+    .main-header {
+        padding: 1.5rem;
+    }
+
+    /* --- Typography --- */
+    .login-card h2 {
+        font-size: 2rem;
+    }
+
+    .content-header h1 {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.15rem;
+    }
+
+    /* --- Login Page --- */
+    .login-container {
+        padding: 1rem;
+    }
+
+    .login-card,
+    .quick-login-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .quick-login-buttons {
+        flex-direction: column;
+    }
+
+    /* --- Dashboard & Content --- */
+    .action-buttons {
+        flex-wrap: wrap;
+        /* Allow buttons to wrap */
+    }
+
+    .tabs-container {
+        flex-wrap: wrap;
+        /* Allow tabs to wrap if needed */
+    }
+
+    .tab-link {
+        margin-right: 1rem;
+    }
+
+    .list-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    /* --- Timetable Generator --- */
+    .stepper-container {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .settings-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .lecture-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    /* --- Timetable Viewer --- */
+    .viewer-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .viewer-card-body {
+        padding: 1rem;
+    }
+}
+
+
+/* Hamburger */
+/* --- Mobile Menu Toggle Button --- */
+.menu-toggle {
+    display: none;
+    /* Hidden on desktop by default */
+    position: absolute;
+    top: 2.5rem;
+    left: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    /* Make sure it's on top of other content */
+}
+
+.menu-toggle .feather {
+    width: 28px;
+    height: 28px;
+    color: var(--text-dark);
+}
+
+/* This media query shows the button ONLY on mobile screens */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Adjusts header padding to make space for the button */
+    .content-header {
+        padding-top: 2.5rem;
+    }
+}
+
+/* Hamburger */
+
+@media (max-width: 768px) {
+    .sidebar.show~.main-content .menu-toggle .feather {
+        color: #FFFFFF;
+        /* White icon for better contrast */
+    }
+}
+
+
+
+/* --- Data Input Page - Subject Tab Styles --- */
+.sub-header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 12px 12px 0 0;
+}
+
+.sub-header-controls .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* --- Toggle Switch Styles --- */
+.toggle-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.toggle-switch span {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: var(--primary-blue);
+}
+
+input:checked+.slider:before {
+    transform: translateX(20px);
+}
+
+/* --- Subject List Styles --- */
+.subject-list-container {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+}
+
+.subject-list-row {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr 1fr 0.5fr;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.subject-list-row:last-child {
+    border-bottom: none;
+}
+
+.subject-list-row.header {
+    background-color: #F9FAFB;
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+}
+
+.subject-list-row input[type="text"] {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+}
+
+.subject-list-row input[type="text"]:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    outline: none;
+}
+
+.availability-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: #E6F8F0;
+    color: #0E9F6E;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.25rem 0.75rem;
+    border-radius: 16px;
+}
+
+.availability-tag .feather {
+    width: 14px;
+    height: 14px;
+}
+
+.col-action {
+    text-align: right;
+}
+
+.col-action a {
+    color: #EF4444;
+    /* Red */
+}
+
+.col-action .feather {
+    width: 18px;
+    height: 18px;
+}
+
+/* --- Responsive adjustments for new list --- */
+@media (max-width: 1024px) {
+    .subject-list-row {
+        grid-template-columns: 2fr 1fr 1fr 0.5fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .sub-header-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .sub-header-controls .header-actions {
+        flex-wrap: wrap;
+    }
+
+    .subject-list-row {
+        grid-template-columns: 2fr 1fr;
+        /* Stack columns */
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    /* Hide headers on mobile */
+    .subject-list-row.header {
+        display: none;
+    }
+
+    .subject-list-row .col-subject,
+    .subject-list-row .col-short-name,
+    .subject-list-row .col-availability {
+        grid-column: span 2;
+    }
+
+    .subject-list-row .col-action {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+        /* Move to top right */
+        text-align: right;
+    }
+
+    .subject-list-row .col-subject {
+        font-weight: 600;
+        /* Emphasize subject name */
+    }
+}
+
+/* --- Generate Timetable - Lessons Tab Styles --- */
+.lesson-list-container {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+}
+
+.lesson-list-row {
+    display: grid;
+    /* This is the correct 5-column grid */
+    grid-template-columns: 2.5fr 1fr 1fr 1fr 0.5fr;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.lesson-list-row:last-child {
+    border-bottom: none;
+}
+
+.lesson-list-row.header {
+    background-color: #F9FAFB;
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+}
+
+.lesson-list-row .col-subject,
+.lesson-list-row .col-short-name {
+    font-weight: 500;
+}
+
+.lesson-list-row .hrs-input {
+    width: 60px;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    text-align: center;
+    font-size: 1rem;
+    font-family: var(--font-primary);
+}
+
+.lesson-list-row .hrs-input:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    outline: none;
+}
+
+.lesson-list-row .col-action {
+    text-align: right;
+}
+
+.lesson-list-row .col-action a {
+    color: #EF4444;
+    /* Red */
+}
+
+.lesson-list-row .col-action .feather {
+    width: 18px;
+    height: 18px;
+}
+
+/* --- Styling for dynamically added Subject/Short Name inputs in Lessons tab --- */
+.lesson-list-row .new-subject-input {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    display: block;
+}
+
+.lesson-list-row .new-subject-input:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    outline: none;
+}
+
+/* Adjust column spans for mobile if inputs are used */
+@media (max-width: 768px) {
+
+    .lesson-list-row .col-subject .new-subject-input,
+    .lesson-list-row .col-short-name .new-subject-input {
+        /* On mobile, ensure these inputs also span correctly */
+        grid-column: span 2;
+    }
+}
+
+/* --- Generate Timetable - Faculty Choice Tab Styles --- */
+.search-bar {
+    position: relative;
+    width: 300px;
+}
+
+.search-bar .feather {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    width: 18px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 0.6rem 0.8rem 0.6rem 2.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+}
+
+.search-bar input:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    outline: none;
+}
+
+.faculty-choice-list-container {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+}
+
+.faculty-choice-list-row {
+    display: grid;
+    /* Prof name, short name, preferences */
+    grid-template-columns: 2fr 1fr 4fr;
+    gap: 1.5rem;
+    align-items: start;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.faculty-choice-list-row:last-child {
+    border-bottom: none;
+}
+
+.faculty-choice-list-row.header {
+    background-color: #F9FAFB;
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+    align-items: center;
+}
+
+.faculty-choice-list-row .col-prof-name {
+    font-weight: 500;
+}
+
+.faculty-choice-list-row .col-short-name {
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+/* Preferences column - contains multiple preference chips */
+.faculty-choice-list-row .col-preferences {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+/* Individual preference chip */
+.preference-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+    border: 1px solid #BFDBFE;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.preference-chip:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.15);
+}
+
+/* Priority badge */
+.priority-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: var(--primary-blue);
+    color: white;
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 0.75rem;
+}
+
+/* Preference detail text */
+.pref-detail {
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+/* No preferences message */
+.no-preferences {
+    color: var(--text-light);
+    font-style: italic;
+    font-size: 0.875rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .faculty-choice-list-row {
+        grid-template-columns: 1.5fr 0.8fr 3fr;
+        gap: 1rem;
+    }
+
+    .preference-chip {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.6rem;
+    }
+
+    .priority-badge {
+        width: 20px;
+        height: 20px;
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .faculty-choice-list-row {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        padding: 1rem;
+    }
+
+    .faculty-choice-list-row.header {
+        display: none;
+    }
+
+    .faculty-choice-list-row .col-prof-name {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .faculty-choice-list-row .col-short-name {
+        font-size: 0.875rem;
+    }
+
+    .faculty-choice-list-row .col-preferences {
+        margin-top: 0.5rem;
+    }
+}
+
+
+/* --- Data Input Page - Rooms Tab Styles --- */
+.room-list-container {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+}
+
+.room-list-row {
+    display: grid;
+    /* Room, Type, Availability, Action */
+    grid-template-columns: 1fr 1fr 1fr 0.5fr;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.room-list-row:last-child {
+    border-bottom: none;
+}
+
+.room-list-row.header {
+    background-color: #F9FAFB;
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+}
+
+.room-list-row input[type="text"] {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+}
+
+.room-list-row input[type="text"]:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    outline: none;
+}
+
+/* Style for the dropdown in the list */
+.room-list-row .select-wrapper {
+    width: 100%;
+}
+
+.room-list-row .select-wrapper select {
+    width: 100%;
+    background-color: #F9FAFB;
+    font-size: 0.9rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+}
+
+.room-list-row .col-action {
+    text-align: right;
+}
+
+.room-list-row .col-action a {
+    color: #EF4444;
+    /* Red */
+}
+
+.room-list-row .col-action .feather {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* --- Data Input Page - Faculties Tab Styles --- */
+
+/* Faculty Statistics Card */
+.faculty-stats-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+    padding: 0;
+}
+
+.stat-item {
+    background: linear-gradient(135deg, #FFFFFF 0%, #F9FAFB 100%);
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.stat-item .feather {
+    width: 32px;
+    height: 32px;
+    color: var(--primary-blue);
+    opacity: 0.8;
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-top: 0.25rem;
+}
+
+/* Faculty List Container */
+.faculty-list-container {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+}
+
+.faculty-list-row {
+    display: grid;
+    /* Name, Short Name, Preferences, Action */
+    grid-template-columns: 2fr 1fr 2.5fr 0.6fr;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.faculty-list-row:last-child {
+    border-bottom: none;
+}
+
+.faculty-list-row.header {
+    background-color: #F9FAFB;
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+}
+
+/* Read-only text columns */
+.faculty-list-row .col-prof-name {
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.faculty-list-row .col-short-name {
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+.faculty-list-row .col-position {
+    color: var(--text-dark);
+    font-size: 0.9rem;
+}
+
+.faculty-list-row input[type="text"] {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+}
+
+.faculty-list-row input[type="text"]:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    outline: none;
+}
+
+/* Style for the dropdown in the list */
+.faculty-list-row .select-wrapper {
+    width: 100%;
+}
+
+.faculty-list-row .select-wrapper select {
+    width: 100%;
+    background-color: #F9FAFB;
+    font-size: 0.9rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+}
+
+/* Preferences column styles */
+.faculty-list-row .col-preferences {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.preferences-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+    border: 1px solid #BFDBFE;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.preferences-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(59, 130, 246, 0.2);
+}
+
+.preferences-badge .count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    background: var(--primary-blue);
+    color: white;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0 0.25rem;
+}
+
+.no-preferences {
+    color: var(--text-light);
+    font-style: italic;
+    font-size: 0.875rem;
+}
+
+.faculty-list-row .col-action {
+    text-align: right;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.faculty-list-row .col-action a,
+.faculty-list-row .col-action button {
+    color: #6B7280;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: all 0.2s ease;
+}
+
+.faculty-list-row .col-action a:hover,
+.faculty-list-row .col-action button:hover {
+    color: var(--primary-blue);
+}
+
+.faculty-list-row .col-action .delete-btn:hover {
+    color: #EF4444;
+}
+
+.faculty-list-row .col-action .feather {
+    width: 18px;
+    height: 18px;
+}
+
+/* Preference Detail Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease;
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #E5E7EB;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--text-dark);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--text-light);
+    transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+    color: var(--text-dark);
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 1.5rem;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.modal-preference-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+}
+
+.modal-preference-item:last-child {
+    margin-bottom: 0;
+}
+
+.modal-priority-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--primary-blue);
+    color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.modal-preference-detail {
+    flex: 1;
+}
+
+.modal-preference-class {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+}
+
+.modal-preference-subject {
+    color: var(--text-light);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+/* Buttons  */
+.form-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-actions .btn {
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    width: auto;
+}
+
+/* Buttons  */
+
+
+
+/* --- User Preferences Page Styles --- */
+.preference-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 2.5rem;
+    margin-top: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Container for all preference rows */
+#preferences-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Individual preference row */
+.pref-row {
+    background: #F9FAFB;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.pref-row:hover {
+    border-color: var(--primary-blue);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Header section with label and delete button */
+.pref-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.pref-header label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pref-header label::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--primary-blue);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Delete button */
+.btn-delete-pref {
+    background: transparent;
+    border: 1px solid #FCA5A5;
+    color: #DC2626;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-delete-pref:hover {
+    background: #FEE2E2;
+    border-color: #DC2626;
+    transform: scale(1.05);
+}
+
+.btn-delete-pref .feather {
+    width: 16px;
+    height: 16px;
+}
+
+/* Dropdowns section */
+.pref-selects {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.pref-selects .select-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.pref-selects .select-wrapper label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.pref-selects select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: var(--font-primary);
+    background-color: white;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B7280' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+}
+
+.pref-selects select:hover {
+    border-color: var(--primary-blue);
+}
+
+.pref-selects select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.pref-selects select:disabled {
+    background-color: #F3F4F6;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Form actions */
+.preference-card .form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #E5E7EB;
+}
+
+.preference-card .form-actions .btn {
+    padding: 0.85rem 1.75rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+}
+
+.preference-card .form-actions .btn-secondary {
+    background: #F3F4F6;
+    color: var(--text-dark);
+    border: 1px solid #D1D5DB;
+}
+
+.preference-card .form-actions .btn-secondary:hover {
+    background: #E5E7EB;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.preference-card .form-actions .btn-primary {
+    background: var(--primary-blue);
+    color: white;
+}
+
+.preference-card .form-actions .btn-primary:hover {
+    background: #2563EB;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.preference-card .form-actions .btn .feather {
+    width: 18px;
+    height: 18px;
+}
+
+/* Empty state message */
+#preferences-container:empty::after {
+    content: 'No preferences added yet. Click "Add Preference" to get started.';
+    display: block;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    color: var(--text-light);
+    font-style: italic;
+    background: #F9FAFB;
+    border: 2px dashed #D1D5DB;
+    border-radius: 12px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .preference-card {
+        padding: 1.5rem;
+    }
+
+    .pref-row {
+        padding: 1.25rem;
+    }
+
+    .pref-selects {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .preference-card .form-actions {
+        flex-direction: column;
+    }
+
+    .preference-card .form-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+
+/* User Management Styles */
+.user-form-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-list-table {
+    width: 100%;
+}
+
+.user-list-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 120px 1.5fr 120px 100px;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    align-items: center;
+}
+
+.user-list-row.header {
+    font-weight: 600;
+    color: #666;
+    border-bottom: 2px solid #ddd;
+    background: #f8f9fa;
+}
+
+.user-list-row:hover:not(.header) {
+    background: #f8f9fa;
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.role-badge.role-hod {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.role-badge.role-faculty {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.role-badge.role-exam_control {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.btn-delete {
+    background: #ffebee;
+    color: #c62828;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-delete:hover {
+    background: #ffcdd2;
+    transform: scale(1.05);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input,
+.form-group select {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* --- Review & Generate Tab Styles (Premium Upgrade) --- */
+.review-container {
+    padding: 1rem 0;
+}
+
+.review-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.review-section {
+    background: var(--card-background);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    /* Premium shadow */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 4px solid var(--primary-blue);
+    /* Accent top border */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.review-section h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.review-section h4 .feather {
+    color: var(--primary-blue);
+    width: 20px;
+    height: 20px;
+}
+
+.review-section p,
+.review-section li {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.review-section strong {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.review-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.review-section li {
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 0.25rem;
+    background-color: #f9fafb;
+    border-left: 2px solid transparent;
+}
+
+.review-section li:hover {
+    background-color: #f3f4f6;
+    border-left-color: var(--primary-blue);
+}
+
+/* Empty state styling */
+.review-section p[style*="color: #999"] {
+    font-style: italic;
+    background: #f9fafb;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Generate Button Area */
+#review-generate .form-actions {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+}
+
+#generateTimetableBtn {
+    max-width: 400px;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.5);
+    display: flex;
+    /* Ensure centering works with icon */
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+#generateTimetableBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.6);
+}

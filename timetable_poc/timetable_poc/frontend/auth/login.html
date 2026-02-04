@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Academic Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/auth/login.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+        <div style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;">
+            <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+
+        <h2>Academic Login</h2>
+        <p>Sign in to your dashboard</p>
+
+        <div class="input-group">
+            <label class="input-label">Select Role</label>
+            <select id="role">
+                <option value="">Choose your role...</option>
+                <option value="FACULTY">Faculty Member</option>
+                <option value="HOD">Head of Department</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">Email Address</label>
+            <input type="email" id="email" placeholder="name@college.edu">
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
+        </div>
+
+        <button onclick="login()">
+            <span>Login</span>
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+        </button>
+
+        <p id="error"></p>
+
+        <a href="/" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i> Back to Home
+        </a>
+    </div>
+
+    <script src="/auth/login.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,493 @@
+/* ==========================================================================
+   HOD DASHBOARD THEME - PREMIUM REFINED
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+    /* Primary Colors */
+    --primary: #3B82F6;
+    /* Vibrant Blue */
+    --primary-hover: #2563EB;
+    /* Deeper Blue */
+
+    /* Backgrounds & Text */
+    --bg-body: #F9FAFB;
+    /* Off-white background */
+    --bg-surface: #FFFFFF;
+    /* Pure white cards */
+    --text-main: #1F2937;
+    /* Near black */
+    --text-muted: #6B7280;
+    /* Gray */
+    --border: #E5E7EB;
+    /* Lighter, minimal border */
+
+    /* Sidebar */
+    --sidebar-bg: #111827;
+    --sidebar-text: #F3F4F6;
+    --sidebar-hover: #374151;
+
+    /* Status Colors */
+    --success: #10B981;
+    --danger: #EF4444;
+
+    /* Design Tokens */
+    --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.05);
+    /* Requested soft shadow */
+    --radius-card: 16px;
+    /* Large radius for containers */
+    --radius-element: 8px;
+    /* Smaller radius for inputs/buttons */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Smooth transition */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   LAYOUT STRUCTURE
+   ========================================================================== */
+
+.layout {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 280px;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.02);
+    z-index: 10;
+}
+
+.sidebar h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    color: white;
+    letter-spacing: 0.02em;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sidebar nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    /* More spacing between links */
+}
+
+.sidebar nav a {
+    text-decoration: none;
+    color: #9CA3AF;
+    padding: 1rem 1.25rem;
+    /* Generous padding */
+    border-radius: var(--radius-element);
+    font-weight: 500;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+}
+
+.sidebar nav a:hover {
+    background-color: var(--sidebar-hover);
+    color: white;
+    transform: translateX(4px);
+    /* Subtle shift */
+}
+
+.sidebar nav a.active {
+    background-color: var(--primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.logout {
+    margin-top: auto;
+    text-decoration: none;
+    color: #FCA5A5;
+    padding: 1rem;
+    border-radius: var(--radius-element);
+    font-weight: 600;
+    transition: var(--transition);
+    background: rgba(239, 68, 68, 0.05);
+    text-align: center;
+    border: 1px solid rgba(239, 68, 68, 0.1);
+}
+
+.logout:hover {
+    background: var(--danger);
+    color: white;
+    border-color: var(--danger);
+    transform: translateY(-2px);
+}
+
+/* Main Content Area */
+.content {
+    flex: 1;
+    padding: 3rem;
+    /* Generous white space */
+    overflow-y: auto;
+    background-image:
+        radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.03) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(37, 99, 235, 0.03) 0px, transparent 50%);
+}
+
+/* ==========================================================================
+   COMPONENT STYLES
+   ========================================================================== */
+
+/* Typography */
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+}
+
+h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
+p {
+    color: var(--text-muted);
+    line-height: 1.7;
+    /* Relaxed reading */
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+/* Tables */
+.table-container {
+    background: var(--bg-surface);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    margin-top: 2rem;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.table-container:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    /* Lift effect on container */
+    transform: translateY(-2px);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    background-color: transparent;
+    padding: 1.25rem 2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+}
+
+td {
+    padding: 1.25rem 2rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr {
+    transition: background-color 0.2s;
+}
+
+tr:hover td {
+    background-color: #F9FAFB;
+}
+
+/* Buttons */
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: var(--radius-element);
+    padding: 0.75rem 1.5rem;
+    /* Generous padding */
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    font-family: 'Poppins', sans-serif;
+}
+
+button:not(.secondary):not(.danger) {
+    background-color: var(--primary);
+    color: white;
+}
+
+button:not(.secondary):not(.danger):hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    /* Lift effect */
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+}
+
+button.secondary {
+    background-color: white;
+    border: 1px solid var(--border);
+    color: var(--text-main);
+}
+
+button.secondary:hover {
+    background-color: #F9FAFB;
+    border-color: #9CA3AF;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+button.danger {
+    background-color: #FEF2F2;
+    color: var(--danger);
+    border: 1px solid #FECACA;
+}
+
+button.danger:hover {
+    background-color: var(--danger);
+    color: white;
+    border-color: var(--danger);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.2);
+}
+
+/* Forms */
+input,
+select {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-element);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    background-color: var(--bg-surface);
+    transition: var(--transition);
+    width: 100%;
+    /* Default to full width in containers */
+    max-width: 100%;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    /* Softer focus ring */
+    transform: translateY(-1px);
+}
+
+/* Cards */
+.card {
+    background: var(--bg-surface);
+    padding: 2.5rem;
+    /* Generous white space */
+    border-radius: var(--radius-card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 2rem;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    /* Subtle lift for all interactive cards */
+    transform: translateY(-2px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.07);
+    border-color: #D1D5DB;
+}
+
+/* Quick Action Cards Specifics */
+.grid-3 .card,
+.grid-2 .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+/* Grid Layouts */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    /* Larger gaps */
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #E5E7EB;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #9CA3AF;
+}
+
+/* Utility */
+small {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--secondary);
+    font-weight: 500;
+}
+
+/* Animations */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Status Cards */
+.status-card {
+    padding: 1.5rem;
+    border-radius: var(--radius-element);
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 500;
+}
+
+.status-success {
+    background-color: #ECFDF5;
+    color: var(--success);
+    border: 1px solid #A7F3D0;
+}
+
+.status-error {
+    background-color: #FEF2F2;
+    color: var(--danger);
+    border: 1px solid #FECACA;
+}
+
+.status-loading {
+    background-color: #EFF6FF;
+    color: var(--primary);
+    border: 1px solid #BFDBFE;
+}
+
+/* UTILITY CLASSES */
+.center-content {
+    text-align: center;
+    align-items: center !important;
+}
+
+.action-row {
+    margin-top: 1.5rem;
+}
+
+.text-muted {
+    color: var(--text-muted);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+.w-auto {
+    width: auto !important;
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.action-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+}
+
+.hidden {
+    display: none !important;
+}
